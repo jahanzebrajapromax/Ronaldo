@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Century | Premium Sportswear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
+        }
+        
+        .custom-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(to right, #D4AF37, #F9D423);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .instagram-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .product-overlay {
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .size-selector input[type="radio"]:checked + label {
+            background-color: #000;
+            color: #D4AF37;
+            border-color: #D4AF37;
+        }
+        
+        .cart-item-animation {
+            animation: cartPulse 0.5s ease-in-out;
+        }
+        
+        @keyframes cartPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .customization-preview {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold gold-gradient-text">CENTURY</a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#products" class="hover:text-yellow-400 transition">Shop</a>
+                <a href="#customize" class="hover:text-yellow-400 transition">Customize</a>
+                <a href="#about" class="hover:text-yellow-400 transition">About</a>
+                <a href="#testimonials" class="hover:text-yellow-400 transition">Reviews</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="cartButton" class="relative hover:text-yellow-400 transition">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    <div id="cartDropdown" class="hidden absolute right-0 mt-2 w-72 bg-white text-black rounded shadow-lg z-50 p-4">
+                        <h3 class="font-bold border-b pb-2 mb-2">Your Cart</h3>
+                        <div id="cartItems" class="max-h-60 overflow-y-auto">
+                            <p class="text-sm text-gray-500">Your cart is empty</p>
+                        </div>
+                        <div class="border-t mt-2 pt-2">
+                            <div class="flex justify-between font-bold">
+                                <span>Total:</span>
+                                <span id="cartTotal">$0.00</span>
+                            </div>
+                            <button class="w-full bg-black text-yellow-400 py-2 mt-2 rounded hover:bg-gray-800 transition">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="md:hidden" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-gray-900 px-4 py-2">
+            <a href="#products" class="block py-2 hover:text-yellow-400 transition">Shop</a>
+            <a href="#customize" class="block py-2 hover:text-yellow-400 transition">Customize</a>
+            <a href="#about" class="block py-2 hover:text-yellow-400 transition">About</a>
+            <a href="#testimonials" class="block py-2 hover:text-yellow-400 transition">Reviews</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 hero-gradient z-10"></div>
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+             alt="Ronaldo in Century Kit" 
+             class="absolute inset-0 w-full h-full object-cover">
+        
+        <div class="container mx-auto px-4 relative z-20 text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">UNLEASH YOUR <span class="gold-gradient-text">GREATNESS</span></h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Premium sportswear engineered for champions. Wear the same quality as CR7.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded transition duration-300">SHOP NOW</a>
+                <a href="#customize" class="border-2 border-yellow-500 hover:bg-yellow-500 hover:bg-opacity-20 text-white font-bold py-3 px-8 rounded transition duration-300">CUSTOMIZE KIT</a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-0 right-0 z-20 text-center">
+            <a href="#products" class="animate-bounce inline-block">
+                <i class="fas fa-chevron-down text-2xl text-yellow-400"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">OUR <span class="gold-gradient-text">COLLECTIONS</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Premium materials, innovative designs, and uncompromising quality for athletes who demand the best.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden custom-shadow relative">
+                    <div class="relative overflow-hidden">
+                        <img src="https://i.postimg.cc/vZczWf31/Whats-App-Image-2025-04-26-at-18-13-09-880d24bb.jpg"
+                             class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                        <div class="product-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <button class="add-to-cart bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded transition" 
+                                    data-id="1" 
+                                    data-name="Century Home Jersey" 
+                                    data-price="89.99">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Century Roanldo Jesrey</h3>
+                        <p class="text-gray-600 text-sm mb-2">Official replica with moisture-wicking technology</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Rs1499/</span>
+                            <div class="flex space-x-1 text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden custom-shadow relative">
+                    <div class="relative overflow-hidden">
+                        <img src="https://i.postimg.cc/HnbxGZYJ/Whats-App-Image-2025-04-26-at-18-13-09-8d965671.jpg"
+
+                             alt="Century Away Jersey" 
+                             class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                        <div class="product-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <button class="add-to-cart bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded transition" 
+                                    data-id="2" 
+                                    data-name="Century Away Jersey" 
+                                    data-price="89.99">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Roanldo Jesrey</h3>
+                        <p class="text-gray-600 text-sm mb-2">Breathable fabric with enhanced ventilation zones</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Rs1499/</span>
+                            <div class="flex space-x-1 text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden custom-shadow relative">
+                    <div class="relative overflow-hidden">
+                        <img src="https://i.postimg.cc/90c3MJPw/ronaldo.jpg"
+                             alt="Training Shorts" 
+                             class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                        <div class="product-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <button class="add-to-cart bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded transition" 
+                                    data-id="3" 
+                                    data-name="Training Shorts" 
+                                    data-price="49.99">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Training Combo</h3>
+                        <p class="text-gray-600 text-sm mb-2">Lightweight with 4-way stretch for maximum mobility</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Rs1799/</span>
+                            <div class="flex space-x-1 text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden custom-shadow relative">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Performance Socks" 
+                             class="w-full h-64 object-cover transition duration-500 hover:scale-105">
+                        <div class="product-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <button class="add-to-cart bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded transition" 
+                                    data-id="4" 
+                                    data-name="Performance Socks" 
+                                    data-price="24.99">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Performance Sneakers</h3>
+                        <p class="text-gray-600 text-sm mb-2">Compression fit with arch support and cushioning</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Rs3500</span>
+                            <div class="flex space-x-1 text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-black hover:bg-black hover:text-white font-bold py-3 px-8 rounded transition duration-300">
+                    VIEW ALL PRODUCTS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customization Section -->
+    <section id="customize" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">CUSTOM <span class="gold-gradient-text">RONALDO KIT</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Create your personalized Century jersey with your name and number</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-100 p-8 rounded-lg">
+                        <div class="customization-preview relative">
+                            <img src="https://i.postimg.cc/90c3MJPw/ronaldo.jpg"
+                                 alt="Custom Jersey Preview" 
+                                 class="w-full rounded">
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                                <div id="jerseyNumber" class="text-6xl font-bold text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">7</div>
+                                <div id="jerseyName" class="text-xl font-bold text-white mt-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">RONALDO</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <form id="customizationForm" class="space-y-6">
+                        <div>
+                            <label for="jerseyType" class="block text-sm font-medium text-gray-700 mb-1">Jersey Type</label>
+                            <select id="jerseyType" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                <option value="home">Home Jersey - Rs1499</option>
+                                <option value="away">Away Jersey -Rs1699</option>
+                                <option value="third">Third Kit - Rs1799</option>
+                                <option value="elite">Elite Version - Rs1899</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="playerName" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="playerName" maxlength="12" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Enter your name" value="RONALDO">
+                        </div>
+                        
+                        <div>
+                            <label for="playerNumber" class="block text-sm font-medium text-gray-700 mb-1">Jersey Number</label>
+                            <input type="number" id="playerNumber" min="1" max="99" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" value="7">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Size</label>
+                            <div class="size-selector grid grid-cols-5 gap-2">
+                                <input type="radio" name="size" id="size-xs" value="XS" class="hidden">
+                                <label for="size-xs" class="border border-gray-300 rounded py-2 text-center cursor-pointer hover:bg-gray-100">XS</label>
+                                
+                                <input type="radio" name="size" id="size-s" value="S" class="hidden" checked>
+                                <label for="size-s" class="border border-gray-300 rounded py-2 text-center cursor-pointer hover:bg-gray-100">S</label>
+                                
+                                <input type="radio" name="size" id="size-m" value="M" class="hidden">
+                                <label for="size-m" class="border border-gray-300 rounded py-2 text-center cursor-pointer hover:bg-gray-100">M</label>
+                                
+                                <input type="radio" name="size" id="size-l" value="L" class="hidden">
+                                <label for="size-l" class="border border-gray-300 rounded py-2 text-center cursor-pointer hover:bg-gray-100">L</label>
+                                
+                                <input type="radio" name="size" id="size-xl" value="XL" class="hidden">
+                                <label for="size-xl" class="border border-gray-300 rounded py-2 text-center cursor-pointer hover:bg-gray-100">XL</label>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="font-medium">Total:</span>
+                                <span id="customJerseyPrice" class="text-xl font-bold">$89.99</span>
+                            </div>
+                            <button type="button" id="addCustomToCart" class="w-full bg-black text-yellow-400 hover:bg-gray-800 font-bold py-3 px-4 rounded transition duration-300">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">#<span class="gold-gradient-text">WEARCENTURY</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Join our community of elite athletes and fans</p>
+            </div>
+            
+            <div class="instagram-feed">
+                <div class="overflow-hidden rounded-lg">
+                    <img src="https://i.postimg.cc/8z6Z2LW2/Whats-App-Image-2025-04-26-at-18-39-27-e4213b1d.jpg"
+                         class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Instagram post" 
+                         class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Instagram post" 
+                         class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Instagram post" 
+                         class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="#" class="inline-flex items-center text-black font-bold hover:text-yellow-500 transition">
+                    <i class="fab fa-instagram text-2xl mr-2"></i>
+                    FOLLOW US ON INSTAGRAM
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-black text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">ATHLETE <span class="gold-gradient-text">TESTIMONIALS</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Hear what professional athletes say about Century gear</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-900 rounded-lg p-6 custom-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                             alt="Marcus Rashford" 
+                             class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Marcus Rashford</h4>
+                            <p class="text-yellow-400 text-sm">Professional Footballer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"The Century jerseys are next level. The fabric is so light yet durable, and the fit is perfect for high-intensity matches. I've never felt more comfortable on the pitch."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-900 rounded-lg p-6 custom-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                             alt="Alex Morgan" 
+                             class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Alex Morgan</h4>
+                            <p class="text-yellow-400 text-sm">USWNT Star</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"As a professional athlete, I need gear that can keep up with my performance. Century's training shorts are the best I've ever worn - perfect mobility and they look amazing too."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-900 rounded-lg p-6 custom-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                             alt="Cristiano Ronaldo" 
+                             class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Cristiano Ronaldo</h4>
+                            <p class="text-yellow-400 text-sm">Football Legend</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"When Century approached me to collaborate on their premium line, I knew it had to meet my exacting standards. The result is sportswear that performs as well as it looks - perfect for champions."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Century Team" 
+                         class="w-full rounded-lg custom-shadow">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4">OUR <span class="gold-gradient-text">MISSION</span></h2>
+                    <p class="text-gray-600 mb-6">Founded in 2010, Century was born from a simple idea: to create sportswear that combines cutting-edge performance with premium style. We believe every athlete deserves gear that empowers them to perform at their peak.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Performance First</h4>
+                                <p class="text-gray-600">Our fabrics are engineered with professional athletes to enhance speed, comfort, and endurance.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Sustainable Innovation</h4>
+                                <p class="text-gray-600">We're committed to reducing our environmental impact through recycled materials and ethical manufacturing.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Champion Mindset</h4>
+                                <p class="text-gray-600">Every Century product is designed to help you train harder, play smarter, and recover faster.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="#" class="inline-block border-2 border-black hover:bg-black hover:text-white font-bold py-3 px-8 rounded transition duration-300">
+                            LEARN MORE ABOUT US
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-2">JOIN THE <span class="gold-gradient-text">CENTURY CLUB</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">Subscribe to get exclusive offers, early access to new collections, and athlete insights.</p>
+            
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l focus:outline-none text-black">
+                <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-r transition duration-300">
+                    SUBSCRIBE
+                </button>
+            </form>
+            
+            <p class="text-gray-500 text-sm mt-4">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold gold-gradient-text mb-4">CENTURY</h3>
+                    <p class="mb-4">Premium sportswear for athletes who demand the best in performance and style.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-500 transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">SHOP</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-yellow-500 transition">Jerseys</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Shorts</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Socks</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Accessories</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Custom Kits</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">SUPPORT</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-yellow-500 transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Shipping & Returns</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Track Order</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">COMPANY</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-yellow-500 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Press</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Athletes</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 Century Sportswear. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-yellow-500 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-yellow-500 transition">Terms of Service</a>
+                    <a href="#" class="hover:text-yellow-500 transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Cart functionality
+        let cart = [];
+        const cartButton = document.getElementById('cartButton');
+        const cartDropdown = document.getElementById('cartDropdown');
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+
+        // Toggle cart dropdown
+        cartButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            cartDropdown.classList.toggle('hidden');
+        });
+
+        // Close cart when clicking outside
+        document.addEventListener('click', function() {
+            cartDropdown.classList.add('hidden');
+        });
+
+        // Prevent cart from closing when clicking inside
+        cartDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const price = parseFloat(this.getAttribute('data-price'));
+                
+                addToCart(id, name, price);
+            });
+        });
+
+        // Add custom jersey to cart
+        document.getElementById('addCustomToCart').addEventListener('click', function() {
+            const jerseyType = document.getElementById('jerseyType');
+            const typeText = jerseyType.options[jerseyType.selectedIndex].text;
+            const playerName = document.getElementById('playerName').value.toUpperCase();
+            const playerNumber = document.getElementById('playerNumber').value;
+            const size = document.querySelector('input[name="size"]:checked').value;
+            const price = parseFloat(jerseyType.value.split(' - ')[1].replace('$', ''));
+            
+            const name = `Custom ${typeText.split(' - ')[0]} (${playerName} ${playerNumber}, Size ${size})`;
+            
+            addToCart(`custom-${Date.now()}`, name, price);
+        });
+
+        // Add item to cart
+        function addToCart(id, name, price) {
+            // Check if item already exists in cart
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            
+            // Add animation to cart button
+            cartCount.classList.add('cart-item-animation');
+            setTimeout(() => {
+                cartCount.classList.remove('cart-item-animation');
+            }, 500);
+        }
+
+        // Update cart UI
+        function updateCart() {
+            // Update count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update items list
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-sm text-gray-500">Your cart is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex justify-between items-center py-2 border-b">
+                        <div class="text-sm">
+                            <p class="font-medium">${item.name}</p>
+                            <p class="text-gray-500">${item.quantity} × $${item.price.toFixed(2)}</p>
+                        </div>
+                        <button class="remove-from-cart text-red-500 hover:text-red-700" data-id="${item.id}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `).join('');
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-from-cart').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        removeFromCart(id);
+                    });
+                });
+            }
+            
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        // Custom jersey preview updates
+        document.getElementById('playerName').addEventListener('input', function() {
+            const name = this.value.toUpperCase() || 'RONALDO';
+            document.getElementById('jerseyName').textContent = name;
+        });
+
+        document.getElementById('playerNumber').addEventListener('input', function() {
+            const number = this.value || '7';
+            document.getElementById('jerseyNumber').textContent = number;
+        });
+
+        document.getElementById('jerseyType').addEventListener('change', function() {
+            const price = this.options[this.selectedIndex].text.split(' - ')[1];
+            document.getElementById('customJerseyPrice').textContent = price;
+            
+            // Update preview image based on jersey type
+            const preview = document.querySelector('.customization-preview img');
+            if (this.value === 'home') {
+                preview.src = 'https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
+            } else if (this.value === 'away') {
+                preview.src = 'https://images.unsplash.com/photo-1520975916090-3105956dac38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
+            } else if (this.value === 'third') {
+                preview.src = 'https://images.unsplash.com/photo-1610484826967-09c922077e33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
+            } else {
+                preview.src = 'https://images.unsplash.com/photo-1614624532983-4fe0333299c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
